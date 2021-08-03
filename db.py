@@ -12,22 +12,24 @@ class olist_db:
             config.read('.config')
             self.client = pymongo.MongoClient(config["DATABASE"]['url'])
 
-    def add_availability(self):
+    def add_availability(self, product_link):
         self.client.olistbot.dynconfigs.insert_one({
             "available": False,
-            "name": "availability",
+            "name": product_link,
             "time": datetime.utcnow()
         })
 
-    def get_availability(self):
+    def get_availability(self, product_link):
         dado = self.client.olistbot.dynconfigs.find_one({
-            "name": "availability"
+            "name": product_link
         })
+        if not dado:
+            self.add_availability(product_link)
 
         return dado
 
-    def set_availability(self, available):
-        query = {"name": "availability"}
+    def set_availability(self, product_link, available):
+        query = {"name": product_link}
         values = {"$set": {"available": available, "time": datetime.utcnow()}}
         self.client.olistbot.dynconfigs.update_one(query, values)
 
@@ -35,6 +37,6 @@ class olist_db:
 if __name__ == "__main__":
     db = olist_db()
     # db.add_availability()
-    db.set_availability(True)
-    dado = db.get_availability()
+    dado = db.get_availability(
+        "https://www.meli.lojaolist.com.br/MLB-1919043357-gift-card-virtual-ifood-pague-r10-e-ganhe-r15-_JM")
     print(dado)
