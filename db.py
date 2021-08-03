@@ -1,6 +1,10 @@
 from configparser import ConfigParser
 from datetime import datetime
 import pymongo
+import os
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
 class olist_db:
@@ -9,7 +13,7 @@ class olist_db:
             self.client = pymongo.MongoClient(url)
         else:
             config = ConfigParser()
-            config.read('.config')
+            config.read(os.path.join(__location__, '.config'))
             self.client = pymongo.MongoClient(config["DATABASE"]['url'])
 
     def add_availability(self, product_link):
