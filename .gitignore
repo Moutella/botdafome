@@ -1,0 +1,6 @@
+env
+activate
+.config
+.secret
+teste*
+__pycache__
