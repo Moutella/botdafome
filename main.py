@@ -10,10 +10,9 @@ from db import olist_db
 
 
 def main():
-    # product_links = ["https://www.meli.lojaolist.com.br/MLB-1919043357-gift-card-virtual-ifood-pague-r10-e-ganhe-r15-_JM",
-    #                  "https://oliststoresp.mercadoshops.com.br/MLB-1957034504-gift-card-virtual-ifood-pague-r10-e-ganhe-r15-_JM"]
+    product_links = ["https://www.meli.lojaolist.com.br/MLB-1919043357-gift-card-virtual-ifood-pague-r10-e-ganhe-r15-_JM",
+                     "https://oliststoresp.mercadoshops.com.br/MLB-1957034504-gift-card-virtual-ifood-pague-r10-e-ganhe-r15-_JM"]
 
-    product_links = ["https://www.meli.lojaolist.com.br/MLB-1944495270-whisky-old-virginia-bourbon-6-anos-700ml-_JM#reco_item_pos=2&reco_backend=machinaxlis-seller-items&reco_backend_type=function&reco_client=vip-seller_items_above-shops&reco_id=3709d7dd-14de-4b48-8855-f27277baba55"]
     for product_link in product_links:
         value = requests.get(product_link)
         configs = olist_db()
