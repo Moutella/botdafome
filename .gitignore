@@ -4,3 +4,4 @@ activate
 .secret
 teste*
 __pycache__
+.DS_Store

@@ -20,7 +20,8 @@ class olist_db:
         self.client.olistbot.dynconfigs.insert_one({
             "available": False,
             "name": product_link,
-            "time": datetime.utcnow()
+            "time": datetime.utcnow(),
+            "qty": 0
         })
 
     def get_availability(self, product_link):
@@ -32,9 +33,10 @@ class olist_db:
 
         return dado
 
-    def set_availability(self, product_link, available):
+    def set_availability(self, product_link, available, qty=0):
         query = {"name": product_link}
-        values = {"$set": {"available": available, "time": datetime.utcnow()}}
+        values = {"$set": {"qty": qty, "available": available,
+                           "time": datetime.utcnow()}}
         self.client.olistbot.dynconfigs.update_one(query, values)
 
 

@@ -2,3 +2,5 @@ pymongo
 pymongo[srv]
 requests
 tweepy
+beautifulsoup4
+pytz
