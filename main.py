@@ -28,8 +28,9 @@ def main():
             qty = re.findall(r'\d+', qty_str)
             if qty:
                 qty = qty[0]
+                qty = int(qty)
         bot = SimpleTwitterBot()
-        if not last_available['available'] and current_available:
+        if not last_available['available'] and current_available and qty > 20:
             configs.set_availability(product_link, True, qty)
             # configs.set_availability(product_link, True)
             br = timezone("America/Sao_Paulo")
